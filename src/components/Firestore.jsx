@@ -1,5 +1,6 @@
 import React from 'react';
 import {db} from '../firebase';
+import Calendario from './Calendario';
 
 function App(props) {
   
@@ -107,28 +108,10 @@ function App(props) {
 
   return (
     <div className="container">
+     
       <div className="row">
-        <div className="col-md-6">
-          <ul className="list-group">
-            {
-              tareas.map(item =>(
-                <li className="list-group-item" key={item.id}>
-                  {item.nombre}
-                  <button 
-                  className="btn btn-danger float-end"
-                  onClick={() => eliminar (item.id)}
-                  >Eliminar</button>
-                  <button 
-                  className="btn btn-warning float-end me-2"
-                  onClick={() => activarEdicion(item)}
-                  >Editar</button>
-
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-        <div className="col-md-6">
+        <div className="col mb-2">
+        
           <h3>
             {
               modoEdicion ? 'Editar Tarea' : 'Agregar Tarea'
@@ -138,13 +121,13 @@ function App(props) {
             <input
             type="text"
             placeholder="Ingrese tarea"
-            capture="form-control mb-2"
+            capture="form-control"
             onChange={e => setTarea(e.target.value)}
             value={tarea}
             />
             <br/>
             <button className={
-              modoEdicion ? 'btn btn-warning col-5 mt-2' : 'btn btn-dark col-5 mt-2'
+              modoEdicion ? 'btn btn-warning col-4 mt-2' : 'btn btn-dark mt-2 col-4'
             }
             type="submit"
             >
@@ -154,7 +137,31 @@ function App(props) {
             </button>
           </form>
         </div>
+          <ul className="list-group">
+            {
+              tareas.map(item =>(
+                <li className="list-group-item" key={item.id}>
+                  {item.nombre}                 
+                  <button 
+                  className="btn btn-danger float-end"
+                  onClick={() => eliminar (item.id)}
+                  >Eliminar</button>
+                  <button 
+                  className="btn btn-warning float-end me-2"
+                  onClick={() => activarEdicion(item)}
+                  >Editar</button>
+                   <button 
+                  className="btn btn-info float-end me-2"
+                  
+                  >Mover</button>
+
+                </li>
+              ))
+            }
+          </ul>        
       </div>
+      <Calendario/>
+
     </div>
   );
 }

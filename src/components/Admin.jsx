@@ -21,7 +21,7 @@ const Admin = (props) => {
 
     return (
         <div>
-            <h2>Rutra protegida</h2>
+            <h2>Trello</h2>
             {
                 user && (
                     <Firestore user={user}/>
